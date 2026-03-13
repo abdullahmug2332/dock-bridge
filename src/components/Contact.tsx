@@ -1,14 +1,14 @@
 export default function Contact() {
   return (
-    <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="pad md:py-32 px-4 sm:px-6 lg:px-8 bg-gray-50" id="contact-us">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">
           <div>
-          <p className="color text-3xl angello">Contact Us</p>
+          <p className="subtitle">Contact Us</p>
 
-            <h2 className="text-4xl md:text-5xl salsify font-bold text-gray-900 mb-6 leading-tight text-pretty">
+            <h2 className=" mb-6 title ">
               Get In Touch
             </h2>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+            <p className="p mb-8  md:w-[80%]">
               Have questions about our seafood or your order? Our team is here to help you with quick and reliable support.
             </p>
 
@@ -35,16 +35,17 @@ export default function Contact() {
               </div>
               <div>
                 <textarea
-                  placeholder="Your message here..."
+                  placeholder="Your message "
                   rows={4}
                   className="w-full px-4 py-3  rounded-lg bg-white  resize-none"
                 />
               </div>
             </div>
 
-            <button className=" bg2  text-white px-7 py-2 text-md rounded-md">
-              Send Message
-            </button>
+            
+            <button className="bg2 text-white border border2 hover:bg-[transparent]! hcolor2 px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hborder2 font-medium">
+            Submit Message
+          </button>
           </div>
 
           <div className="block">

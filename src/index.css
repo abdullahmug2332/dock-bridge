@@ -1,8 +1,12 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+html{
+   scroll-behavior: smooth;
+}
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 @font-face {
   font-family: "Angello";
@@ -26,59 +30,68 @@ body {
 }
 
 :root {
-  --primary: #1CA7A6;
+  --primary: #1ca7a6;
   --secondary: #FF6B5A;
-
 }
-.container{
-  @apply w-[95%] lg:w-[80%] mx-auto
+.container {
+  @apply w-[95%] lg:w-[90%] 2xl:w-[80%]  mx-auto;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
-.bg{
+.bg {
   background-color: var(--primary) !important;
 }
-.color{
+.color {
   color: var(--primary) !important;
 }
-.hcolor{
-   @apply hover:text-[var(--primary)]!
+.hcolor {
+  @apply hover:text-[var(--primary)]!;
 }
 .border1 {
-  border-color: var(--primary) !important;   
+  border-color: var(--primary) !important;
 }
-.hbg{
-  @apply hover:bg-[var(--primary)]!
+.hbg {
+  @apply hover:bg-[var(--primary)]!;
 }
 
-
-.bg2{
+.bg2 {
   background-color: var(--secondary) !important;
 }
-.hbg2{
-  @apply hover:bg-[var(--secondary)]!
+.hbg2 {
+  @apply hover:bg-[var(--secondary)]!;
 }
 
-.color2{
+.color2 {
   color: var(--secondary) !important;
 }
-.hcolor2{
-   @apply hover:text-[var(--secondary)]!
+.hcolor2 {
+  @apply hover:text-[var(--secondary)]!;
 }
 .border2 {
-  border-color: var(--secondary) !important;   
+  border-color: var(--secondary) !important;
 }
 
 .hero {
-    background-image: url('/hero.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url("/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
+}
+.title {
+  font-family: "Salsify", cursive;
+  @apply text-[45px] md:text-[50px] lg:text-[50px] xl:text-[60px] font-[400] text-gray-900 mb-2 leading-tight;
+}
+.subtitle{
+  font-family: "Angello", cursive;
+  @apply text-[28px] lg:text-[30px] text-[var(--primary)]
+}
+.p{
+  @apply text-[17px] text-[#6E7B8B]
 }
 
 /* Overlay */
@@ -90,6 +103,9 @@ body {
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.5); /* overlay color */
+    background: rgba(0, 0, 0, 0.3); 
     z-index: -1;
+}
+.pad{
+  @apply py-15 md:py-20 lg:py-28
 }

@@ -16,32 +16,31 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-8 font-medium">
-            {["Home", "About", "Products", "Testimonials", "Contact"].map(
-              (item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="relative  transition text-gray-600
+            {[
+              { name: "Home", href: "#home" },
+              { name: "About Us", href: "#about-us" },
+              { name: "Locations", href: "#locations" },
+              { name: "Testimonials", href: "#testimonials" },
+              { name: "Contact Us", href: "#contact-us" },
+            ].map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="relative transition text-gray-600
       after:absolute after:left-0 after:-bottom-1
       after:h-[2px] after:w-0 after:bg-[var(--primary)]
       after:transition-all after:duration-300
       hover:after:w-full"
-                >
-                  {item}
-                </a>
-              ),
-            )}
+              >
+                <p className="text-[15px]">{item.name}</p>
+              </a>
+            ))}
           </div>
 
           {/* Desktop Buttons */}
           <div className="hidden lg:flex gap-3">
-            {/* Sign In */}
-            <button className="px-4 py-2  border border1 bg hcolor text-white bg-primary hover:text-primary hover:bg-white!  font-medium hover:bg-orange-50 transition rounded">
-              Pre order
-            </button>
-
             {/* Order Button */}
-            <button className="px-4 py-2 rounded-md bg-secondary text-white border border2 bg2 hcolor2 font-medium hover:bg-white! transition  rounded">
+            <button className="px-6 py-2 text-[14px] rounded-md bg-secondary text-white border border2 bg2 hcolor2 font-medium hover:bg-white! transition  rounded">
               Book Catering
             </button>
           </div>
@@ -57,27 +56,25 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden pb-4 pt-2 flex flex-col gap-3">
-            <a href="#" className="text-gray-700 hcolor2">
-              Home 
+          <div className="lg:hidden pb-4 pt-2 flex flex-col gap-3 ">
+            <a href="#home" className="text-gray-700 hcolor2" onClick={()=>setMobileMenuOpen(false)}>
+              <p className="p">Home</p>
             </a>
-            <a href="#" className="text-gray-700 hcolor2">
-              About
+            <a href="#about-us" className="text-gray-700 hcolor2" onClick={()=>setMobileMenuOpen(false)}>
+              <p className="p">About Us</p>
             </a>
-            <a href="#" className="text-gray-700 hcolor2">
-              Selection
-            </a>
-
-            <a href="#" className="text-gray-700 hcolor2">
-              Contact
+            <a href="#locations" className="text-gray-700 hcolor2" onClick={()=>setMobileMenuOpen(false)}>
+              <p className="p">Locations</p>
             </a>
 
-            <button className="w-full py-2 rounded-md border border color hover:bg-orange-50 transition">
-              Sign In
-            </button>
-
-            <button className="w-full py-2 rounded-md border border1 bg hcolor text-white bg-primary hover:text-primary hover:bg-white! transition">
-              Order Now
+            <a href="#testimonials" className="text-gray-700 hcolor2" onClick={()=>setMobileMenuOpen(false)}>
+              <p className="p">Testimonials</p>
+            </a>
+            <a href="#contact-us" className="text-gray-700 hcolor2" onClick={()=>setMobileMenuOpen(false)}>
+              <p className="p">Contact Us</p>
+            </a>
+            <button className="px-4 py-2 rounded-md bg-secondary text-white border border2 bg2 hcolor2 font-medium hover:bg-white! transition  rounded">
+              Book Catering
             </button>
           </div>
         )}

@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer className="bg-black/93 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
       <div className="container">
-        <div className="flex flex-wrap  gap-4 gap-y-10 mb-8">
+        <div className="flex flex-wrap lg:flex-nowrap  gap-4 gap-y-10 mb-8">
           {/* Company Info */}
           <div className="w-full md:w-[55%] lg:w-[30%]">
             <div className="flex items-center gap-2 mb-4">
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="w-full sm:w-[45%] lg:w-[20%] lg:pl-10">
+          <div className="w-full sm:w-[45%] lg:w-[17%] lg:pl-10">
             <h3 className="text-white font-bold mb-4 text-[20px]">Quick Links</h3>
             <div className="space-y-3">
               <a href="#" className="text-white hcolor transition block text-[14px]">
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
 
           {/* Customer Service */}
-          <div className="w-full sm:w-[45%] lg:w-[20%] ">
+          <div className="w-full sm:w-[45%] lg:w-[23%] pr-10">
             <h3 className="text-white font-bold mb-4 text-[20px]">Contact us</h3>
             <div className="space-y-3">
               <a href="#" className="text-gray-400 hcolor transition block ">

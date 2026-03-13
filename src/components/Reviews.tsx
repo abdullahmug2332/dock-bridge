@@ -80,17 +80,17 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <div className=" py-20  container">
+    <div className=" pad container" id="testimonials">
       <div className="relative">
         <Carousel ref={carouselRef} className="gap-6" opts={{ loop: true }}>
-          <div className="flex justify-between items-center mb-12">
+          <div className="flex flex-col lg:flex-row justify-between lg:items-center mb-12">
             <div>
-              <p className="color font-medium mb-2 text-3xl angello">Testimonials</p>
-              <h2 className="text-4xl md:text-5xl sm:text-4xl font-bold salsify">
+              <p className="subtitle mb-2 ">Testimonials</p>
+              <h2 className="title">
                 What Our Customers Say
               </h2>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ml-auto lg:ml-0">
               <CarouselPrevious className="relative top-10 left-0  bg2 border2 text-white rounded-md shadow-lg w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center cursor-pointer z-10" />
               <CarouselNext className="relative top-10 left-0 -translate-y-1/2 bg2 border2 text-white rounded-md shadow-lg w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center cursor-pointer z-10" />
             </div>
@@ -117,7 +117,7 @@ export default function Testimonials() {
                     <BiSolidQuoteRight className="size-10" />
                   </span>
                 </div>
-                <p className="text-gray-600 mb-4 flex-1">{t.message}</p>
+                <p className="p mb-4 flex-1">{t.message}</p>
                 <div className="flex items-center mt-4">
                   <img
                     src={t.image}
