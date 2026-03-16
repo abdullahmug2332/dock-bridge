@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useEffect } from "react";
 import {
   Carousel,
@@ -9,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { IoCart } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 interface Product {
   name: string;
@@ -44,7 +43,7 @@ export default function FromTide() {
   }, []);
 
   return (
-    <div className="bg-gray-100/30">
+    <div className="bg-gray-100/30" id="products">
       <div className="container pad ">
         <div className="text-center mb-12">
           <h4 className="mb-1 subtitle">Featured Products</h4>
@@ -99,6 +98,11 @@ export default function FromTide() {
               &gt;
             </CarouselNext>
           </Carousel>
+        </div>
+        <div className="flex justify-center">
+          <Link to={"/products"}>
+            <button className="btn2 mt-10">View More</button>
+          </Link>
         </div>
       </div>
     </div>

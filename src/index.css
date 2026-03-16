@@ -109,3 +109,9 @@ body {
 .pad{
   @apply py-15 md:py-20 lg:py-28
 }
+.btn{
+  @apply bg-[var(--primary)] text-white hover:text-[var(--primary)] border border-[var(--primary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--primary)] font-medium
+}
+.btn2{
+  @apply bg-[var(--secondary)] text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--secondary)] font-medium
+}
