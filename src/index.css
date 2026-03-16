@@ -115,3 +115,33 @@ body {
 .btn2{
   @apply bg-[var(--secondary)] text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--secondary)] font-medium
 }
+
+
+
+
+/* Slim horizontal scrollbar */
+.slim-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.slim-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb {
+  background: #1CA7A6;
+  border-radius: 10px;
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #1CA7A6;
+}
+
+/* Firefox */
+.slim-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #1ca7a75e transparent;
+}
+.border{
+ border:1px solid rgb(211, 211, 211) !important;
+}

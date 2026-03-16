@@ -70,9 +70,9 @@ export default function Navbar() {
                   </DropdownMenuGroup>                  
                 </DropdownMenuContent>
               </DropdownMenu>
-              <button className=" text-[14px] color2">
+              <Link to={"/cart"} className=" text-[14px] color2">
                 <BsBagCheck className="size-5 md:size-6 cursor-pointer" />
-              </button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}

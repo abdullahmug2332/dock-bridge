@@ -1,5 +1,4 @@
-import { Button } from "./ui/button";
-import { Carousel } from "./ui/carousel";
+import { Link } from "react-router-dom";
 import { FaFishFins } from "react-icons/fa6";
 export default function FromTide() {
   return (
@@ -17,9 +16,7 @@ export default function FromTide() {
         {/* Text Section */}
         <div className="order-1 lg:order-2">
           <p className="subtitle">About Us</p>
-          <h2 className="title">
-            From Tech to Tide
-          </h2>
+          <h2 className="title">From Tech to Tide</h2>
           <p className="mb-4 p">
             We bring the ocean closer to your home. Our platform is built to
             make fresh, high-quality seafood easily accessible, with complete
@@ -59,11 +56,12 @@ export default function FromTide() {
               </div>
             ))}
           </div>
-
-          <button className="bg2 text-white border border2 hover:bg-[transparent]! hcolor2 px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hborder2 font-medium">
-            Shop Now
-          </button>
-        </div> 
+          <Link to={"/products"}>
+            <button className="bg2 text-white border border2 hover:bg-[transparent]! hcolor2 px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hborder2 font-medium">
+              Shop Now
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

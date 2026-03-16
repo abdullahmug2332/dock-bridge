@@ -8,22 +8,14 @@ import {
 } from "@/components/ui/carousel";
 import { IoCart } from "react-icons/io5";
 import { Link } from "react-router-dom";
-
+import { products } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
 interface Product {
   name: string;
   price: string;
   unit?: string;
   image: string;
 }
-
-const products: Product[] = [
-  { name: "Blue Crabs", price: "$32.99", unit: "/ dozen", image: "/crabs.png" },
-  { name: "Crawfish", price: "$24.99", unit: "/ lb", image: "/crabs.png" },
-  { name: "Shrimp", price: "$19.99", unit: "/ lb", image: "/crabs.png" },
-  { name: "Blue Crabs", price: "$32.99", unit: "/ dozen", image: "/crabs.png" },
-  { name: "Crawfish", price: "$24.99", unit: "/ lb", image: "/crabs.png" },
-  { name: "Shrimp", price: "$19.99", unit: "/ lb", image: "/crabs.png" },
-];
 
 export default function FromTide() {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -57,35 +49,12 @@ export default function FromTide() {
         <div className="relative">
           <Carousel ref={carouselRef} className="gap-6" opts={{ loop: true }}>
             <CarouselContent className="gap-4 px-2 sm:px-5">
-              {products.map((product, index) => (
+              {products.map((product) => (
                 <CarouselItem
-                  key={index}
-                  className="
-                    flex flex-col bg-white
-                    basis-[90%] sm:basis-[45%] md:basis-1/3 lg:basis-[32.8%] pl-0 p-3 rounded-[30px]! relative left-2 sm:left-3 md:left-1
-                  "
+                  key={product.id}
+                  className="basis-[90%] sm:basis-[45%] md:basis-1/3 lg:basis-[32.8%] relative left-2 sm:left-3 md:left-1"
                 >
-                  <div className="w-full ">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-300  rounded-[20px]!"
-                    />
-                  </div>
-                  <div className="p-4 pb-2! sm:p-6 flex  justify-between  ">
-                    <div className="w-[80%]">
-                      <h3 className="text-lg md:text-2xl  lg:text-3xl font-[400] text-gray-900 salsify">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm sm:text-base flex gap-2 items-end">
-                        <span className="text-black text-[20px] ">
-                          {product.price}
-                        </span>{" "}
-                        {product.unit}
-                      </p>
-                    </div>
-                    <IoCart className="text-white bg-teal-500 p-3.5 rounded-xl w-8 h-8 sm:w-10 sm:h-10 size-14!" />
-                  </div>
+                  <ProductCard product={product} />
                 </CarouselItem>
               ))}
             </CarouselContent>

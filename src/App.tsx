@@ -9,6 +9,8 @@ import CurrentOrders from "./components/pages/CurrentOrders";
 import OrderHistory from "./components/pages/OrderHistory";
 import Products from "./components/pages/Products";
 import DetailPage from "./components/pages/ProductDetail";
+import Cart from "./components/pages/Cart";
+import Checkout from "./components/pages/Checkout";
 
 function App() {
   const { pathname } = useLocation();
@@ -24,6 +26,8 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<DetailPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="orders" element={<CurrentOrders />} />
         <Route path="history" element={<OrderHistory />} />
       </Routes>

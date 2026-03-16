@@ -1,53 +1,32 @@
-"use client";
-
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+  Package,
+  DollarSign,
+  Check,
+  HelpCircle,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Send,
+} from "lucide-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  images: string[]; // multiple images
-  weights: number[];
-  rating: number; // 0–5 star rating
-};
-
-const PRODUCTS: Product[] = [
-  {
-    id: 1,
-    name: "Fresh Salmon",
-    description:
-      "Experience the rich, buttery taste of our freshly caught salmon, sustainably sourced from the cold waters of the North Atlantic. Perfect for grilling, baking, or pan-searing, this premium salmon is rich in omega-3 fatty acids and protein, making it both delicious and nutritious. Each fillet is carefully inspected for quality and freshness, ensuring a melt-in-your-mouth experience with every bite. Ideal for family dinners, special occasions, or gourmet recipes at home.",
-    price: 25.99,
-    images: ["/seafood.jpg", "/seafood.jpg", "/seafood.jpg", "/seafood.jpg"],
-    weights: [1, 2, 3, 5],
-    rating: 4.2,
-  },
-  {
-    id: 2,
-    name: "King Crab",
-    description:
-      "Indulge in the succulent taste of our premium king crab legs, hand-selected for their size, flavor, and freshness. Perfect for steaming, boiling, or grilling, these crab legs offer a sweet, delicate meat that is both tender and satisfying. Rich in protein and low in fat, king crab is a luxurious choice for seafood lovers seeking a gourmet experience. Serve with melted butter, lemon, and your favorite sides for an unforgettable dining experience.",
-    price: 45.5,
-    images: ["/seafood.png", "/seafood.png", "/seafood.png", "/seafood.png"],
-    weights: [1, 2, 4],
-    rating: 4.8,
-  },
-];
+import { products } from "@/lib/products";
+import { useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const DetailPage: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const productId = Number(id);
-  const product = PRODUCTS.find((p) => p.id === productId);
+  const product = products.find((p) => p.id === productId);
 
   const [selectedWeight, setSelectedWeight] = useState(
     product?.weights[0] || 1,
@@ -63,13 +42,35 @@ const DetailPage: React.FC = () => {
     console.log(
       `Added ${product.name} (${selectedWeight} lbs x ${quantity}) to cart`,
     );
+    setOpen(true);
+  };
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", onSelect);
+    onSelect();
+  }, [emblaApi]);
+
+  const scrollTo = (index: number) => {
+    emblaApi?.scrollTo(index);
   };
 
   // Create stars array
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="max-w-5xl mx-auto p-4 space-y-6">
+    <div className="max-w-6xl mx-auto p-4 space-y-6">
       {/* Breadcrumbs */}
       <nav className="text-sm text-gray-500">
         <Link to="/" className="hover:text-gray-700">
@@ -82,37 +83,61 @@ const DetailPage: React.FC = () => {
       <div className="flex flex-col md:flex-row gap-8">
         {/* Left: Image gallery */}
         <div className="md:w-1/2 space-y-4">
-          {/* Main carousel */}
-          <Carousel className="relative">
-            <CarouselContent>
-              {product.images.map((img, index) => (
-                <CarouselItem key={index} className="aspect-square">
-                  <img
-                    src={img}
-                    alt={`${product.name} ${index + 1}`}
-                    className="w-full h-full object-cover rounded-md"
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2">
-              <ChevronLeft />
-            </CarouselPrevious>
-            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2">
-              <ChevronRight />
-            </CarouselNext>
-          </Carousel>
+          <div className="flex flex-col md:flex-row gap-8 w-full">
+            {/* Left: Image gallery */}
+            <div className="w-full space-y-4">
+              {/* Main carousel */}
+              <div
+                className="relative overflow-hidden rounded-md"
+                ref={emblaRef}
+              >
+                <div className="flex">
+                  {product.images.map((img, index) => (
+                    <div key={index} className="flex-[0_0_100%] aspect-square">
+                      <img
+                        src={img}
+                        alt={`${product.name} ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
 
-          {/* Thumbnails grid */}
-          <div className="grid grid-cols-4 gap-2">
-            {product.images.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt={`Thumb ${index + 1}`}
-                className="w-full aspect-square object-cover rounded-md border"
-              />
-            ))}
+                {/* Left Arrow */}
+                <button
+                  onClick={scrollPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md p-2 rounded-full transition"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                {/* Right Arrow */}
+                <button
+                  onClick={scrollNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md p-2 rounded-full transition"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+
+              {/* Thumbnails */}
+              <div className="flex gap-2 overflow-x-auto slim-scrollbar">
+                {product.images.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    onClick={() => scrollTo(index)}
+                    alt={`thumb-${index}`}
+                    className={`w-[24%] aspect-square object-cover rounded-md cursor-pointer border transition
+          ${
+            selectedIndex === index
+              ? "border-blue-500 ring-2 ring-blue-400"
+              : "border-gray-200"
+          }`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -184,6 +209,73 @@ const DetailPage: React.FC = () => {
             <button onClick={handleAddToCart} className="btn w-full">
               Add to Cart
             </button>
+          </div>
+          <div className="space-y-3 text-sm text-gray-700 mt-6">
+            {/* Shipping */}
+            <p className="text-gray-500">Shipping Calculated at checkout.</p>
+
+            {/* Shipping free */}
+            <div className="flex items-center gap-2">
+              <Package size={18} />
+              <span>Orders over $50 ship free</span>
+            </div>
+
+            {/* Returns */}
+            <div className="flex items-center gap-2">
+              <DollarSign size={18} />
+              <span>15 day returns</span>
+            </div>
+
+            {/* Ask Question */}
+            <div className="flex items-center gap-2">
+              <HelpCircle size={18} />
+              <span className="cursor-pointer hover:underline">
+                Ask a question
+              </span>
+            </div>
+
+            {/* Share */}
+            <div className="flex items-center gap-2 pt-2">
+              <span className="font-semibold">Share:</span>
+              <Facebook size={18} className="cursor-pointer hcolor" />
+              <Twitter size={18} className="cursor-pointer hcolor" />
+              <Linkedin size={18} className="cursor-pointer hcolor" />
+              <Send size={18} className="cursor-pointer hcolor" />
+            </div>
+            {/* ADD TO CART MODAL */}
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogContent className="sm:max-w-xl py-10 px-5">
+                <DialogHeader>
+                  <DialogTitle>
+                    <p className="text-xl text-center">
+                      Product added to cart successfully!
+                    </p>
+                  </DialogTitle>
+                </DialogHeader>
+
+                <div className="flex justify-center gap-3 mt-4">
+                  <Button onClick={() => navigate("/cart")} className="btn2">
+                    View Cart
+                  </Button>
+
+                  <Button
+                    variant="secondary"
+                    onClick={() => navigate("/checkout")}
+                    className="btn2"
+                  >
+                    Check Out
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => setOpen(false)}
+                    className="btn2"
+                  >
+                    Continue Shopping
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
