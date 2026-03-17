@@ -1,7 +1,7 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-html{
-   scroll-behavior: smooth;
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,7 +31,7 @@ body {
 
 :root {
   --primary: #1ca7a6;
-  --secondary: #FF6B5A;
+  --secondary: #ff6b5a;
 }
 .container {
   @apply w-[95%] lg:w-[90%] 2xl:w-[80%]  mx-auto;
@@ -86,38 +86,35 @@ body {
   font-family: "Salsify", cursive;
   @apply text-[45px] md:text-[50px] lg:text-[50px] xl:text-[60px] font-[400] text-gray-900 mb-2 leading-tight;
 }
-.subtitle{
+.subtitle {
   font-family: "Angello", cursive;
-  @apply text-[28px] lg:text-[30px] text-[var(--primary)]
+  @apply text-[28px] lg:text-[30px] text-[var(--primary)];
 }
-.p{
-  @apply text-[17px] text-[#6E7B8B]
+.p {
+  @apply text-[17px] text-[#6E7B8B];
 }
 
 /* Overlay */
 .hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-    background: rgba(0, 0, 0, 0.3); 
-    z-index: -1;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
 }
-.pad{
-  @apply py-15 md:py-20 lg:py-28
+.pad {
+  @apply py-15 md:py-20 lg:py-28;
 }
-.btn{
-  @apply bg-[var(--primary)] text-white hover:text-[var(--primary)] border border-[var(--primary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--primary)] font-medium
+.btn {
+  @apply bg-[var(--primary)] text-white hover:text-[var(--primary)] border border-[var(--primary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--primary)] font-medium;
 }
-.btn2{
-  @apply bg-[var(--secondary)] text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--secondary)] font-medium
+.btn2 {
+  @apply bg-[var(--secondary)] text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:bg-[transparent]!  px-[25px] py-[9px] text-[15px] cursor-pointer rounded-sm hover:border-[var(--secondary)] font-medium;
 }
-
-
-
 
 /* Slim horizontal scrollbar */
 .slim-scrollbar::-webkit-scrollbar {
@@ -129,12 +126,12 @@ body {
 }
 
 .slim-scrollbar::-webkit-scrollbar-thumb {
-  background: #1CA7A6;
+  background: #1ca7a6;
   border-radius: 10px;
 }
 
 .slim-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #1CA7A6;
+  background: #1ca7a6;
 }
 
 /* Firefox */
@@ -142,6 +139,29 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #1ca7a75e transparent;
 }
-.border{
- border:1px solid rgb(211, 211, 211) !important;
+.border {
+  border: 1px solid rgb(211, 211, 211) !important;
+}
+
+/* The container (the track) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* The background of the scrollbar */
+/* ::-webkit-scrollbar-track {
+  background: #1e1e24; 
+
+} */
+
+/* The draggable handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #1ca7a6 0%, #ff6b5a 100%);
+
+  /* border: 2px solid #1e1e24; Creates a padding effect around the thumb */
+}
+
+/* Hover effect on the handle */
+::-webkit-scrollbar-thumb:hover {
+  background: #1ca7a6;
 }

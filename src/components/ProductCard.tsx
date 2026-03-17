@@ -1,7 +1,5 @@
 "use client";
-
 import { useState } from "react";
-import { IoCart } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,13 +8,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { BsInfoCircleFill } from "react-icons/bs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Product = {
   id: number;
   name: string;
   price: number;
+  category?: string;
   unit?: string;
   images: string[];
+  isPreorder?: boolean; // NEW: Pre-order flag
+  preorderPickupDate?: string; // NEW: Pickup date for pre-order
 };
 
 interface Props {
@@ -36,34 +43,65 @@ export default function ProductCard({ product }: Props) {
     <>
       <Link
         to={`/product/${product.id}`}
-        className="flex flex-col bg-white p-3 rounded-[30px]"
+        className="flex flex-col bg-white shadow-lg relative"
       >
+        {/* Product Image */}
         <div className="w-full">
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover rounded-[20px]"
+            className="w-full h-full object-cover aspect-square"
           />
         </div>
 
-        <div className="p-4 pb-2 sm:p-6 flex justify-between">
-          <div className="w-[80%]">
-            <h3 className="text-lg md:text-2xl lg:text-3xl font-[400] text-gray-900 salsify">
+        {/* PRE-ORDER BADGE */}
+        {product.isPreorder && (
+          <div className="absolute top-2 right-2 bg2 text-white text-xs px-2 py-1 rounded font-semibold z-10">
+            PRE-ORDER AVAILABLE
+          </div>
+        )}
+
+        <div className="p-4 pb-2 sm:p-4">
+          <div className="w-full flex flex-col gap-2 items-center relative">
+            <h3 className="text-lg md:text-xl lg:text-2xl text-center font-[600] text-gray-700 salsify">
               {product.name}
             </h3>
 
-            <p className="text-gray-600 text-sm sm:text-base flex gap-2 items-end">
-              <span className="text-black text-[20px]">${product.price}</span>
-              {product.unit}
+            <p className="text-gray-700 text-[15px] font-medium">
+              ${product.price}
             </p>
-          </div>
 
-          <button
-            onClick={handleAddToCart}
-            className="text-white bg-teal-500 p-3.5 rounded-xl w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center hover:bg-teal-600 transition-colors"
-          >
-            <IoCart className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
+            {/* Pre-Order Info */}
+            {/* Pre-Order Info (fixed height for all cards) */}
+            <div className="text-center text-sm text-gray-600 min-h-[40px] flex flex-col justify-center">
+              {product.isPreorder && product.preorderPickupDate ? (
+                <>
+                  <p>Available for Pickup: {product.preorderPickupDate}</p>
+                  <p>Deposit Required</p>
+                </>
+              ) : (
+                <span className="invisible">Placeholder</span>
+              )}
+            </div>
+            <Button className="btn w-full py-4! rounded-none!">
+              Add to cart
+            </Button>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div
+                  onClick={(e) => e.preventDefault()} // stop Link navigation
+                  className="absolute top-0 right-0 cursor-pointer"
+                >
+                  <BsInfoCircleFill className="text-gray-700" />
+                </div>
+              </TooltipTrigger>
+
+              <TooltipContent>
+                <p>Pricing is subject to change</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
         </div>
       </Link>
 
@@ -101,7 +139,6 @@ export default function ProductCard({ product }: Props) {
           </div>
         </DialogContent>
       </Dialog>
-      
     </>
   );
 }
