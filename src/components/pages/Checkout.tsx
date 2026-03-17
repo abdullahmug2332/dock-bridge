@@ -317,7 +317,7 @@ export default function Checkout() {
           </div>
 
           {/* ── ORDER SUMMARY ── */}
-          <div className="space-y-4 sticky top-6">
+          <div className="space-y-4 sticky top-24">
             <div
               className="bg-white rounded-2xl p-6 shadow-sm"
               style={{ border: "1px solid #ececec" }}

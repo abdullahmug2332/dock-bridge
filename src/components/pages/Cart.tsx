@@ -203,7 +203,7 @@ export default function Cart() {
 
             {/* ── Order Summary ── */}
             <div
-              className="bg-white rounded-2xl p-6 shadow-sm sticky top-6"
+              className="bg-white rounded-2xl p-6 shadow-sm sticky top-24"
               style={{ border: "1px solid #ececec" }}
             >
               {/* Header */}
