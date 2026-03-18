@@ -7,11 +7,12 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import CurrentOrders from "./components/pages/CurrentOrders";
 import OrderHistory from "./components/pages/OrderHistory";
-import Products from "./components/pages/Products";
 import DetailPage from "./components/pages/ProductDetail";
 import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
 import { GiOyster } from "react-icons/gi";
+import CategoryPage from "./components/pages/CategoryPage";
+import Products from "./components/pages/Products";
 
 function Preloader() {
   return (
@@ -49,13 +50,13 @@ function Preloader() {
       </div>
 
       {/* Brand name */}
-      <p
-        className="salsify text-[32px] text-gray-800 tracking-wide leading-none mb-1"
-      >
+      <p className="salsify text-[32px] text-gray-800 tracking-wide leading-none mb-1">
         SeaFresh
       </p>
-      <p className="text-[11px] tracking-[0.3em] uppercase font-semibold mb-8"
-        style={{ color: "#1ca7a6" }}>
+      <p
+        className="text-[11px] tracking-[0.3em] uppercase font-semibold mb-8"
+        style={{ color: "#1ca7a6" }}
+      >
         Premium Seafood
       </p>
 
@@ -95,7 +96,6 @@ function Preloader() {
 
 function App() {
   const { pathname } = useLocation();
-  const isAuthenticated = true;
   const [loading, setLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
 
@@ -146,6 +146,7 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<DetailPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="orders" element={<CurrentOrders />} />

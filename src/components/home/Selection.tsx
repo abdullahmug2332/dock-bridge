@@ -6,10 +6,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { IoCart } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { products } from "@/lib/products";
-import ProductCard from "@/components/ProductCard";
+import { categories } from "@/lib/products";
+import CategoryCard from "@/components/CategoryCard";
+
 interface Product {
   name: string;
   price: string;
@@ -49,12 +49,12 @@ export default function FromTide() {
         <div className="relative">
           <Carousel ref={carouselRef} className="gap-6" opts={{ loop: true }}>
             <CarouselContent className="gap-4 px-2 sm:px-5">
-              {products.map((product) => (
+              {categories.map((category) => (
                 <CarouselItem
-                  key={product.id}
+                  key={category.id}
                   className="basis-[90%] sm:basis-[45%] md:basis-1/3 lg:basis-[32.8%] relative left-2 sm:left-3 md:left-1"
                 >
-                  <ProductCard product={product} />
+                  <CategoryCard category={category} />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -67,11 +67,6 @@ export default function FromTide() {
               &gt;
             </CarouselNext>
           </Carousel>
-        </div>
-        <div className="flex justify-center">
-          <Link to={"/products"}>
-            <button className="btn2 mt-10">View More</button>
-          </Link>
         </div>
       </div>
     </div>

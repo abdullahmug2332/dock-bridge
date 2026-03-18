@@ -18,7 +18,7 @@ import { HashLink } from "react-router-hash-link";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const cartCount=2
+  const cartCount = 2;
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -39,7 +39,8 @@ export default function Navbar() {
               { name: "Testimonials", href: "/#testimonials" },
               { name: "Contact Us", href: "/#contact-us" },
             ].map((item) => (
-              <HashLink smooth 
+              <HashLink
+                smooth
                 key={item.name}
                 to={item.href}
                 className="relative transition text-gray-600
@@ -66,25 +67,29 @@ export default function Navbar() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuGroup className="space-y-1 p-1">
-                    <DropdownMenuItem><Link to={"/auth"}>Login</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link to={"/orders"}>Orders</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link to={"/history"}>History</Link></DropdownMenuItem>
-                  </DropdownMenuGroup>                  
+                    <DropdownMenuItem>
+                      <Link to={"/auth"}>Login</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link to={"/orders"}>Orders</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link to={"/history"}>History</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link to="/cart" className="relative text-[14px] color2">
-      
-      {/* Cart Icon */}
-      <IoCartOutline className="size-5 md:size-7 cursor-pointer" />
+                {/* Cart Icon */}
+                <IoCartOutline className="size-5 md:size-7 cursor-pointer" />
 
-      {/* Bubble */}
-      {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg text-white text-[10px]  w-4 h-4 flex items-center justify-center rounded-full">
-          {cartCount}
-        </span>
-      )}
-
-    </Link>
+                {/* Bubble */}
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg text-white text-[10px]  w-4 h-4 flex items-center justify-center rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -102,52 +107,30 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden pb-4 pt-2 flex flex-col gap-3 ">
-            <HashLink smooth
-              to="/#home"
-              className="text-gray-700 hcolor2"
+        <div
+          className={`lg:hidden flex flex-col  overflow-hidden transition-all duration-700 ease-in-out ${
+            mobileMenuOpen ? "max-h-screen" : "max-h-0 py-0"
+          }`}
+        >
+          {[
+            { to: "/#home", label: "Home" },
+            { to: "/#about-us", label: "About Us" },
+            { to: "/#products", label: "Products" },
+            { to: "/#catering", label: "Catering" },
+            { to: "/#testimonials", label: "Testimonials" },
+            { to: "/#contact-us", label: "Contact Us" },
+          ].map((item) => (
+            <HashLink
+              key={item.to}
+              smooth
+              to={item.to}
               onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-700 hover:text-teal-600 px-3  transition-colors py-3 border-t border-gray-100"
             >
-              <p className="p">Home</p>
+              {item.label}
             </HashLink>
-            <HashLink smooth
-              to="/#about-us"
-              className="text-gray-700 hcolor2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <p className="p">About Us</p>
-            </HashLink>
-            <HashLink smooth
-              to="/#products"
-              className="text-gray-700 hcolor2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <p className="p">Products</p>
-            </HashLink>
-            <HashLink smooth
-              to="/#catering"
-              className="text-gray-700 hcolor2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <p className="p">Catering</p>
-            </HashLink>
-            <HashLink smooth
-              to="/#testimonials"
-              className="text-gray-700 hcolor2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <p className="p">Testimonials</p>
-            </HashLink>
-            <HashLink smooth
-              to="/#contact-us"
-              className="text-gray-700 hcolor2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <p className="p">Contact Us</p>
-            </HashLink>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </nav>
   );
