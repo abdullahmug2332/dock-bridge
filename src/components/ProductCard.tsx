@@ -21,6 +21,7 @@ type Product = {
   price: number;
   category?: string;
   unit?: string;
+  weights: number[];
   images: string[];
   isPreorder?: boolean; // NEW: Pre-order flag
   preorderPickupDate?: string; // NEW: Pickup date for pre-order
@@ -38,12 +39,16 @@ export default function ProductCard({ product }: Props) {
     e.preventDefault(); // prevent link navigation
     setOpen(true);
   };
+  const [selectedWeight, setSelectedWeight] = useState(
+    product?.weights[0] || 1,
+  );
+  const calculatedPrice = product.price * selectedWeight;
 
   return (
     <>
       <Link
         to={`/product/${product.id}`}
-        className="flex flex-col bg-white shadow-lg relative"
+        className="flex flex-col bg-white shadow-lg "
       >
         {/* Product Image */}
         <div className="w-full">
@@ -54,13 +59,6 @@ export default function ProductCard({ product }: Props) {
           />
         </div>
 
-        {/* PRE-ORDER BADGE */}
-        {product.isPreorder && (
-          <div className="absolute top-2 right-2 bg2 text-white text-xs px-2 py-1 rounded font-semibold z-10">
-            PRE-ORDER AVAILABLE
-          </div>
-        )}
-
         <div className="p-4 pb-2 sm:p-4">
           <div className="w-full flex flex-col gap-2 items-center relative">
             <h3 className="text-lg md:text-xl lg:text-2xl text-center font-[600] text-gray-700 salsify">
@@ -68,21 +66,27 @@ export default function ProductCard({ product }: Props) {
             </h3>
 
             <p className="text-gray-700 text-[15px] font-medium">
-              ${product.price}
+              ${calculatedPrice.toFixed(2)}
             </p>
 
             {/* Pre-Order Info */}
             {/* Pre-Order Info (fixed height for all cards) */}
-            <div className="text-center text-sm text-gray-600 min-h-[40px] flex flex-col justify-center">
-              {product.isPreorder && product.preorderPickupDate ? (
-                <>
-                  <p>Available for Pickup: {product.preorderPickupDate}</p>
-                  <p>Deposit Required</p>
-                </>
-              ) : (
-                <span className="invisible">Placeholder</span>
-              )}
-            </div>
+            <select
+              value={selectedWeight || ""}
+              onChange={(e) => setSelectedWeight(Number(e.target.value))}
+              onClick={(e) => {
+                e.stopPropagation(); // prevent card navigation
+                e.preventDefault();
+              }}
+              className="w-[100px] px-3 py-1 rounded-lg text-[13px] font-semibold text-gray-600 border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 cursor-pointer"
+            >
+            
+              {product.weights.map((w) => (
+                <option key={w} value={w}>
+                  {w} lbs
+                </option>
+              ))}
+            </select>
             <Button className="btn w-full py-4! rounded-none!">
               Add to cart
             </Button>

@@ -32,7 +32,7 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-8 font-medium">
             {[
-              { name: "Home", href: "/#home" },
+              { name: "Home", href: "/#" },
               { name: "About Us", href: "/#about-us" },
               { name: "Products", href: "/#products" },
               { name: "Catering", href: "/#catering" },
@@ -113,7 +113,7 @@ export default function Navbar() {
           }`}
         >
           {[
-            { to: "/#home", label: "Home" },
+            { to: "/#", label: "Home" },
             { to: "/#about-us", label: "About Us" },
             { to: "/#products", label: "Products" },
             { to: "/#catering", label: "Catering" },
