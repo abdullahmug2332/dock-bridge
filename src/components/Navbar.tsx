@@ -38,6 +38,7 @@ export default function Navbar() {
               { name: "Catering", href: "/#catering" },
               { name: "Testimonials", href: "/#testimonials" },
               { name: "Contact Us", href: "/#contact-us" },
+              { name: "Admin", href: "/admin/dashboard" },
             ].map((item) => (
               <HashLink
                 smooth

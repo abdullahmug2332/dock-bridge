@@ -1,4 +1,4 @@
-import FromTide from "../home/FromTide";
+import FromTide from "@/components/home/FromTide";
 import Hero from "@/components/home/Hero";
 import Selection from "@/components/home/Selection";
 import Events from "@/components/home/Events";
