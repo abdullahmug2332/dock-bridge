@@ -37,7 +37,7 @@ export const links = [
     name: "Products",
     pageTitle:"Products",
     url: "/admin/products",
-    icon: <BsBoxSeam className="size-5!" />,
+    icon: <BsBoxSeam className="size-4!" />,
   },
   {
     name: "Inventory",

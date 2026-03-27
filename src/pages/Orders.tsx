@@ -177,13 +177,13 @@ export default function Orders() {
   const getOrderStatusColor = (status: string) => {
     switch (status) {
       case "Completed":
-        return "bg-green-100 text-green-700 text-[13px] px-3 py-3";
+        return "bg-green-100 text-green-700 text-[12px] px-3 py-3";
       case "Processing":
-        return "bg-blue-100 text-blue-700 text-[13px] px-3 py-3";
+        return "bg-blue-100 text-blue-700 text-[12px] px-3 py-3";
       case "Pending":
-        return "bg-yellow-100 text-yellow-700 text-[13px] px-3 py-3";
+        return "bg-yellow-100 text-yellow-700 text-[12px] px-3 py-3";
       case "Cancelled":
-        return "bg-red-100 text-red-700 text-[13px] px-3 py-3";
+        return "bg-red-100 text-red-700 text-[12px] px-3 py-3";
       default:
         return "";
     }
@@ -192,11 +192,11 @@ export default function Orders() {
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
       case "Paid":
-        return "bg-green-100 text-green-700 text-[13px] px-3 py-3";
+        return "bg-green-100 text-green-700 text-[12px] px-3 py-3";
       case "Pending":
-        return "bg-yellow-100 text-yellow-700 text-[13px] px-3 py-3";
+        return "bg-yellow-100 text-yellow-700 text-[12px] px-3 py-3";
       case "Overdue":
-        return "bg-red-100 text-red-700 text-[13px] px-3 py-3";
+        return "bg-red-100 text-red-700 text-[12px] px-3 py-3";
       default:
         return "";
     }
